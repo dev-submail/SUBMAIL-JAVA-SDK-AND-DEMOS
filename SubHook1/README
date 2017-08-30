@@ -1,0 +1,9 @@
+
+Submail SubHook Api
+-------------
+
+这是一个用来接收subhook推送的接口范例，此工程用了springmvc框架，部署在tomcat服务器中，数据接收格式是formdata。
+
+
+
+

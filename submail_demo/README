@@ -1,0 +1,7 @@
+
+Submail Java Demo
+-------------
+   本工程是一个接口调用示例
+   所用到的jar包：commons-beanutils-1.7.0，commons-collections-3.2.1，commons-lang-2.3，   commons-logging-1.1.1，ezmorph-1.0.3，json-lib-2.2.3-jdk15org.apache.httpcomponents.httpclient_4.3.5
+
+   要测试哪个接口在对应的demo里传入对应的参数。参数设置可以参考submail官方参考文档：https://www.mysubmail.com/chs/documents/developer/index
