@@ -64,10 +64,10 @@ public class MessageSend {
 		 * 当 signtype 参数为空时，默认为 normal
 		 * --------------------------------------------------------------------------
 		 */
-		String appid = "15484";
-		String appkey = "2ba1aaff8a24f6bcee47854b5b0d0856";
+		String appid = "1430";
+		String appkey = "f76077c7bb41484631c9edeb3c";
 		String to = "17602115149";
-		String content = "【test2】你好，您的验证码是：1123";
+		String content = "【SUBMAIL】你好，你的验证码是1234";
 		String signtype = "md5";
 		/**
 		 *  ---------------------------------------------------------------------------

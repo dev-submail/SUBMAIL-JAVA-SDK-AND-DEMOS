@@ -1,4 +1,5 @@
 package demo;
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
@@ -60,12 +61,15 @@ public class MailSend {
          to 参数单次请求上限为 5000 个联系人
 		 * --------------------------------------------------------------------------
 		 */
-		String appid = "";
-		String appkey = "";
-		String to = "";
-		String from = "";
-		String subject="";
-		String signtype ="";
+		String appid = "1264";
+		String appkey = "27aed17f497d005ec890f16c045137";
+		String to = "17609@163.com";
+		String from = "843620@jianglgjun.cn";
+		String text="欢迎来到submail";
+		//添加附件
+		File attachments=new File("/Users/submail/Desktop/test.text");
+		String subject="submail";
+		String signtype ="md5";
 		/**
 		 *  ---------------------------------------------------------------------------
 		 */
@@ -78,6 +82,8 @@ public class MailSend {
 		requestData.put("from", from);
 		requestData.put("to", to);
 		requestData.put("subject", subject);
+		requestData.put("attachments", attachments);
+		requestData.put("text",text);
 		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
 		@SuppressWarnings("deprecation")
 		ContentType contentType = ContentType.create(HTTP.PLAIN_TEXT_TYPE,HTTP.UTF_8);
@@ -85,7 +91,9 @@ public class MailSend {
 			String key = entry.getKey();
 			Object value = entry.getValue();
 			if(value instanceof String){
-				builder.addTextBody(key, String.valueOf(value),contentType);
+				builder.addTextBody(key, (String) value,contentType);
+			}else if(value instanceof File){	
+				builder.addBinaryBody(key, (File) value);
 			}
 		}	
 		if(signtype.equals(TYPE_MD5) || signtype.equals(TYPE_SHA1)){
