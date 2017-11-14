@@ -123,6 +123,9 @@ public class DataStore extends TreeMap<String, Object> {
 	}
 	
 	
+	public void setVarJson(JSONObject json) {		 
+		   varJson=json;
+}
 	/**
 	 * 将json对象放到ArrayList集合里
 	 * @param Vkey

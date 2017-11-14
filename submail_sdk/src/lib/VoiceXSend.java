@@ -3,8 +3,6 @@ package lib;
 import java.io.File;
 
 import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
 /**
@@ -44,8 +42,8 @@ public class VoiceXSend extends SenderWapper{
 		return new Voice(this.config);
 	}
 
-	public void xsend(){
-		getSender().xsend(requestData);
+	public String xsend(){
+		return getSender().xsend(requestData);
 	}
 	
 	

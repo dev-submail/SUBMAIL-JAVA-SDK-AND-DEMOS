@@ -1,9 +1,8 @@
 package lib;
 
 import java.io.File;
+
 import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
 /**
@@ -50,8 +49,8 @@ public class MobiledataCharge extends SenderWapper{
 		return new Mobiledata(this.config);
 	}
 
-	public void charge (){
-		getSender().charge(requestData);
+	public String charge (){
+		return getSender().charge(requestData);
 	}
 	
 	

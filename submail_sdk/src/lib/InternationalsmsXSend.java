@@ -3,8 +3,6 @@ package lib;
 import java.io.File;
 
 import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
 
@@ -45,8 +43,8 @@ public class InternationalsmsXSend extends SenderWapper{
 		return new Internationalsms(this.config);
 	}
 
-	public void xsend(){
-		getSender().xsend(requestData);
+	public String xsend(){
+		return getSender().xsend(requestData);
 	}
 	
 	

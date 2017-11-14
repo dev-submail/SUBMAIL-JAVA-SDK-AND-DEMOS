@@ -2,12 +2,9 @@ package lib;
 
 import java.io.File;
 
+import config.AppConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
-import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
-
 /**
  * mail/send 是 SUBMAIL 的邮件 API。 mail/send API 不仅提供强大的邮件发送功能, 
  * 并在 API 中集成了地址簿发送功能。你可以通过设定一些参数来确定 API 以哪种模式发送。 
@@ -96,7 +93,7 @@ public class MAILSend extends SenderWapper{
 		return new Mail(this.config);
 	}
 
-	public void send(){
-		getSender().send(requestData);
+	public String send(){
+		return getSender().send(requestData);
 	}
 }

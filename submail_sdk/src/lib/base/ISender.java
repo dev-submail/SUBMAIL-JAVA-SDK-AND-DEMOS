@@ -18,33 +18,33 @@ public interface ISender {
 	 * @param data{@link HashMap}
 	 * @return 如果发送成功,返回true，发生错误,返回false。
 	 */
-	public boolean send(Map<String, Object> data);
+	public String send(Map<String, Object> data);
 
-	public boolean xsend(Map<String, Object> data);
+	public String xsend(Map<String, Object> data);
 	
-	public boolean subscribe(Map<String, Object> data);
+	public String subscribe(Map<String, Object> data);
 	
-	public boolean unsubscribe(Map<String, Object> data);
+	public String unsubscribe(Map<String, Object> data);
 	
-	public boolean multixsend(Map<String, Object> data);
+	public String multixsend(Map<String, Object> data);
 	
-	public boolean verify(Map<String, Object> data);
+	public String verify(Map<String, Object> data);
 
-	public boolean log(Map<String, Object> data);
+	public String log(Map<String, Object> data);
 	
-	public boolean get(Map<String, Object> data);
+	public String get(Map<String, Object> data);
 	
-	public boolean post(Map<String, Object> data);
+	public String post(Map<String, Object> data);
 	
-	public boolean put(Map<String, Object> data);
+	public String put(Map<String, Object> data);
 	
-	public boolean delete(Map<String, Object> data);
+	public String delete(Map<String, Object> data);
 	
-	public boolean selMobiledata(Map<String, Object> data);
+	public String selMobiledata(Map<String, Object> data);
 	
-	public boolean toService (Map<String, Object> data);
+	public String toService (Map<String, Object> data);
 	
-	public boolean charge(Map<String, Object> data);
+	public String charge(Map<String, Object> data);
 	
 	
 	

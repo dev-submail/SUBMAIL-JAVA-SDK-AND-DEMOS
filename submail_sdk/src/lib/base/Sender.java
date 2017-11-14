@@ -7,9 +7,11 @@ import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lib.Mail;
-import lib.Message;
+
 import net.sf.json.JSONObject;
+import utils.HttpDeleteUtil;
+import utils.RequestEncoder;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -26,9 +28,10 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import utils.HttpDeleteUtil;
-import utils.RequestEncoder;
+
 import config.AppConfig;
+import lib.Mail;
+import lib.Message;
 
 
 /**
@@ -53,91 +56,91 @@ public class Sender implements ISender {
 	}
 
 	@Override
-	public boolean send(Map<String, Object> data) {
+	public String send(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	@Override
-	public boolean xsend(Map<String, Object> data) {
+	public String xsend(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	@Override
-	public boolean subscribe(Map<String, Object> data) {
+	public String subscribe(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	@Override
-	public boolean unsubscribe(Map<String, Object> data) {
+	public String unsubscribe(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 	
 	
 	@Override
-	public boolean multixsend(Map<String, Object> data) {
+	public String multixsend(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	@Override
-	public boolean verify(Map<String, Object> data) {
+	public String verify(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 	
 	@Override
-	public boolean log(Map<String, Object> data) {
+	public String log(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	
-	@Override
-	public boolean get(Map<String, Object> data) {
-		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 	
 	
 	@Override
-	public boolean post(Map<String, Object> data) {
+	public String get(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 	
 	
 	@Override
-	public boolean put(Map<String, Object> data) {
+	public String post(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
+	}
+	
+	
+	@Override
+	public String put(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	@Override
-	public boolean delete(Map<String, Object> data) {
+	public String delete(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 	
 	@Override
-	public boolean selMobiledata(Map<String, Object> data) {
+	public String selMobiledata(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 	
 	@Override
-	public boolean toService(Map<String, Object> data) {
+	public String toService(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 	
 	@Override
-	public boolean charge(Map<String, Object> data) {
+	public String charge(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 	
 	
@@ -203,7 +206,7 @@ public class Sender implements ISender {
 	 * @param data
 	 * @return boolean
 	 * */
-	protected boolean request(String url, Map<String, Object> data) {
+	protected String request(String url, Map<String, Object> data) {
 		HttpPost httppost = new HttpPost(url);
 		httppost.addHeader("charset", "UTF-8");
 		httppost.setEntity(build(data));
@@ -214,7 +217,7 @@ public class Sender implements ISender {
 			if (httpEntity != null) {
 				String jsonStr = EntityUtils.toString(httpEntity, "UTF-8");
 				System.out.println(jsonStr);
-				return jsonStr.contains("success");
+				return jsonStr;
 			}
 			closeableHttpClient.close();
 		} catch (ClientProtocolException e) {
@@ -222,7 +225,7 @@ public class Sender implements ISender {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return null;
 	}
 	
 	/**
@@ -231,7 +234,7 @@ public class Sender implements ISender {
 	 * @param data
 	 * @return
 	 */
-	protected boolean getMethodRequest(String url, Map<String, Object> data) {
+	protected String getMethodRequest(String url, Map<String, Object> data) {
 		data.put(APPID, config.getAppId());
 		data.put(TIMESTAMP, this.getTimestamp());
 		data.put(SIGNATURE, config.getAppKey());
@@ -252,7 +255,7 @@ public class Sender implements ISender {
 			if(httpEntity != null){
 				String jsonStr = EntityUtils.toString(httpEntity, "UTF-8"); 
 				System.out.println(jsonStr);
-				return jsonStr.contains("success");
+				return jsonStr;
 			}
 			closeableHttpClient.close();
 		}catch(ClientProtocolException e){
@@ -260,7 +263,7 @@ public class Sender implements ISender {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-    	return false;
+    	return null;
 }
 	/**
 	 * 短信模板：put方法
@@ -268,7 +271,7 @@ public class Sender implements ISender {
 	 * @param data
 	 * @return
 	 */
-	protected boolean putMethodRequest(String url, Map<String, Object> data)  {
+	protected String putMethodRequest(String url, Map<String, Object> data)  {
 		HttpPut httpput = new HttpPut(url);
 		httpput.addHeader("charset", "UTF-8");
 		data.put(APPID, config.getAppId());
@@ -288,7 +291,7 @@ public class Sender implements ISender {
 			if (httpEntity != null) {
 				String jsonStr = EntityUtils.toString(httpEntity, "UTF-8");
 				System.out.println(jsonStr);
-				return jsonStr.contains("success");
+				return jsonStr;
 			}
 			closeableHttpClient.close();
 		} catch (ClientProtocolException e) {
@@ -296,7 +299,7 @@ public class Sender implements ISender {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return null;
 	}
 	
 	/**
@@ -305,7 +308,7 @@ public class Sender implements ISender {
 	 * @param data
 	 * @return
 	 */
-	protected boolean deleteMethodRequest(String url, Map<String, Object> data) {
+	protected String deleteMethodRequest(String url, Map<String, Object> data) {
 		data.put(APPID, config.getAppId());
 		data.put(TIMESTAMP, this.getTimestamp());
 		data.put(SIGNATURE, config.getAppKey());
@@ -329,7 +332,7 @@ public class Sender implements ISender {
 			if(httpEntity2 != null){
 				String jsonStr = EntityUtils.toString(httpEntity2, "UTF-8"); 
 				System.out.println(jsonStr);
-				return jsonStr.contains("success");
+				return jsonStr;
 			}
 			closeableHttpClient.close();
 		}catch(ClientProtocolException e){
@@ -337,7 +340,7 @@ public class Sender implements ISender {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-    	return false;
+    	return null;
 	}
 
 	/**
@@ -364,7 +367,6 @@ public class Sender implements ISender {
 			Object value = entry.getValue();
 			if (value instanceof String) {
 				builder.addTextBody(key, String.valueOf(value), contentType);			
-				System.out.println(builder.toString());
 			} else if (value instanceof File) {
 				builder.addBinaryBody(key, (File) value);
 			}

@@ -1,9 +1,8 @@
 package lib;
 
 import java.io.File;
+
 import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
 /**
@@ -84,20 +83,20 @@ public class MessageTemplate extends SenderWapper{
 		return new  Message(this.config);
 	}
 
-	public void getTemplate(){
-		getSender().get(requestData);
+	public String getTemplate(){
+		return getSender().get(requestData);
 	}
 	
-	public void postTemplate(){
-		getSender().post(requestData);
+	public String postTemplate(){
+		return getSender().post(requestData);
 	}
 	
-	public void putTemplate(){
-		getSender().put(requestData);
+	public String putTemplate(){
+		return getSender().put(requestData);
 	}
 	
-	public void delTemplate(){
-		getSender().delete(requestData);
+	public String delTemplate(){
+		return getSender().delete(requestData);
 	}
 }
 	
