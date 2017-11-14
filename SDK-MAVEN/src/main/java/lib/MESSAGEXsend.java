@@ -1,10 +1,8 @@
 package lib;
 
+import config.AppConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
-import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
 
 /**
  * essage/xsend  提供完整且强大的短信发送功能，区别在于，message/xsend 
@@ -49,7 +47,7 @@ public class MESSAGEXsend extends SenderWapper {
 		return new Message(this.config);
 	}
 
-	public void xsend(){
-		getSender().xsend(requestData);
+	public String xsend(){
+		return getSender().xsend(requestData);
 	}
 }

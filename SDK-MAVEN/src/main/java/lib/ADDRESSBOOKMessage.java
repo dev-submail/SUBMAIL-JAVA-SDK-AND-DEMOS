@@ -1,11 +1,8 @@
 package lib;
 
+import config.AppConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
-import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
-
 /**
  * 短信地址薄 API
  * @author submail
@@ -36,11 +33,11 @@ public class ADDRESSBOOKMessage extends SenderWapper {
 		return new Message(this.config);
 	}
 	
-	public void subscribe(){
-		getSender().subscribe(requestData);
+	public String subscribe(){
+		return getSender().subscribe(requestData);
 	}
 	
-	public void unsubscribe(){
-		getSender().unsubscribe(requestData);
+	public String unsubscribe(){
+		return getSender().unsubscribe(requestData);
 	}
 }

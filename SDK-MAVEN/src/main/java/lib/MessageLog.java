@@ -1,11 +1,8 @@
 package lib;
 
+import config.AppConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
-import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
-
 /**
  * log/message 是 SUBMAIL 的短信发送日志查询 API
  * @author submail
@@ -27,12 +24,12 @@ public class MessageLog extends SenderWapper {
 		this.config = config;
 	}
 
-	public void addRecipient(String jKey,String jValue) {
-		requestData.addWithJson(RECIPIENT, jKey, jValue);
+	public void addRecipient(String key,String val) {
+		requestData.addWithComma(key, val);
 	}
 
-	public void setProject(String jKey,String jValue) {
-		requestData.addWithJson(PROJECT, jKey, jValue);
+	public void setProject(String key,String val) {
+		requestData.addWithComma(key, val);
 	}
 	
 	public void addResultStatus(String key, String val) {
@@ -44,19 +41,19 @@ public class MessageLog extends SenderWapper {
 	}
 	
 	public void addEndDate(String key, String val) {
-		requestData.addWithJson(END_DATA, key, val);
+		requestData.addWithComma(key, val);
 	}
 	
 	public void addOrdeBy(String key, String val) {
-		requestData.addWithJson(ORDER_BY, key, val);
+		requestData.addWithComma(key, val);
 	}
 	
 	public void addRows(String key, String val) {
-		requestData.addWithJson(ROWS, key, val);
+		requestData.addWithComma(key, val);
 	}
 	
 	public void addOffset(String key, String val) {
-		requestData.addWithJson(OFFSET, key, val);
+		requestData.addWithComma(key, val);
 	}
 	
 	@Override
@@ -64,7 +61,7 @@ public class MessageLog extends SenderWapper {
 		return new Message(this.config);
 	}
 
-	public void log(){
-		getSender().log(requestData);
+	public String log(){
+		return getSender().log(requestData);
 	}
 }

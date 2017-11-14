@@ -2,10 +2,9 @@ package lib;
 
 import java.util.Map;
 
+import config.AppConfig;
 import lib.base.ISender;
 import lib.base.Sender;
-
-import config.AppConfig;
 
 /**
  * 手机流量api定义发送HTTP请求消息模式。
@@ -23,17 +22,17 @@ public class Mobiledata extends Sender {
 
 	
 	@Override
-	public boolean selMobiledata(Map<String, Object> data) {
+	public String selMobiledata(Map<String, Object> data) {
 		return request(API_PACKAGE , data);
 	}
 
 	@Override
-	public boolean toService(Map<String, Object> data) {
+	public String toService(Map<String, Object> data) {
 		return request(API_TOSERVICE, data);
 	}
 
 	@Override
-	public boolean charge(Map<String, Object> data) {
+	public String charge(Map<String, Object> data) {
 		return request(API_CHARGE, data);
 	}
 

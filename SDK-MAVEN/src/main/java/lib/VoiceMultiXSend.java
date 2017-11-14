@@ -6,14 +6,11 @@ package lib;
 import java.io.File;
 
 import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
 import net.sf.json.JSONObject;
 
 public class VoiceMultiXSend extends SenderWapper{
-	
 	protected AppConfig config = null;
 	public static final String TO = "to";
 	public static final String PROJECT = "project";
@@ -35,12 +32,10 @@ public class VoiceMultiXSend extends SenderWapper{
 		requestData.addWithComma(PROJECT, project);;
 	}
 	
-	public void addVars(String key,String val){
-		requestData.addWithJson(Vars,key,val);
-	}
+
 	
-	public JSONObject getVars(String key1,String val1,String key2,String val2){	
-		return requestData.getVarJson(key1, val1, key2, val2);
+	public void addVars(JSONObject json){	
+	    requestData.setVarJson(json);
 	}
 	
 	public void addMulti(String toval){
@@ -54,8 +49,8 @@ public class VoiceMultiXSend extends SenderWapper{
 		return new Voice(this.config);
 	}
 
-	public void multixsend(){
-		getSender().multixsend(requestData);
+	public String multixsend(){
+		return getSender().multixsend(requestData);
 	}
 	
 	

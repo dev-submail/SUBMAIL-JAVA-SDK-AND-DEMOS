@@ -2,10 +2,9 @@ package lib;
 
 import java.util.Map;
 
+import config.AppConfig;
 import lib.base.ISender;
 import lib.base.Sender;
-
-import config.AppConfig;
 /**
  * 邮件api
  * @author submail
@@ -23,23 +22,23 @@ public class Mail extends Sender {
 	}
 
 	@Override
-	public boolean send(Map<String, Object> data) {
+	public String send(Map<String, Object> data) {
 		return request(API_SEND, data);
 	}
 
 	@Override
-	public boolean xsend(Map<String, Object> data) {
+	public String xsend(Map<String, Object> data) {
 		return request(API_XSEND, data);
 	}
 
 	@Override
-	public boolean subscribe(Map<String, Object> data) {
+	public String subscribe(Map<String, Object> data) {
 		// TODO Auto-generated method stub
 		return request(API_SUBSCRIBE, data);
 	}
 
 	@Override
-	public boolean unsubscribe(Map<String, Object> data) {
+	public String unsubscribe(Map<String, Object> data) {
 		// TODO Auto-generated method stub
 		return request(API_UNSUBSCRIBE, data);
 	}

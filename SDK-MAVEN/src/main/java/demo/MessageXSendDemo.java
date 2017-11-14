@@ -13,6 +13,7 @@ public class MessageXSendDemo {
 		submail.setProject("w3nla3");
 		submail.addVar("code", "张三");
 		submail.addVar("minue", "2289");
-		submail.xsend();
+		String response=submail.xsend();
+		System.out.println("接口返回数据："+response);
 	}	
 }

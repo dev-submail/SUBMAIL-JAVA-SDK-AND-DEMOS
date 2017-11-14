@@ -1,11 +1,8 @@
 package lib;
 
+import config.AppConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
-import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
-
 /**
  *mail/xsend 提供强大的邮件发送功能，区别于 mail/send API，mail/xsend 无需提交 html 源码或邮件文本内容，
  *甚至无需提交邮件标题或发件人，仅需提交你在 SUBMAIL MAIL 应用程序中创建的邮件项目的标记（ID），
@@ -85,7 +82,7 @@ public class MAILXSend extends SenderWapper {
 		return new Mail(this.config);
 	}
 
-	public void xsend(){
-		getSender().xsend(requestData);
+	public String xsend(){
+		return getSender().xsend(requestData);
 	}
 }

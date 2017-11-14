@@ -2,10 +2,9 @@ package lib;
 
 import java.util.Map;
 
+import config.AppConfig;
 import lib.base.ISender;
 import lib.base.Sender;
-
-import config.AppConfig;
 
 /**
  * 短信api，定义发送HTTP请求消息模式。
@@ -24,22 +23,22 @@ public class Voice extends Sender {
 	}
 
 	@Override
-	public boolean send(Map<String, Object> data) {
+	public String send(Map<String, Object> data) {
 		return request(API_SEND, data);
 	}
 
 	@Override
-	public boolean xsend(Map<String, Object> data) {
+	public String xsend(Map<String, Object> data) {
 		return request(API_XSEND, data);
 	}
 
 	@Override
-	public boolean multixsend(Map<String, Object> data) {
+	public String multixsend(Map<String, Object> data) {
 		return request(API_MULTIXSEND, data);
 	}
 
 	@Override
-	public boolean verify(Map<String, Object> data) {
+	public String verify(Map<String, Object> data) {
 		return request(API_VERIFY, data);
 	}
 	

@@ -1,9 +1,8 @@
 package lib;
 
 import java.io.File;
+
 import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
 
@@ -40,8 +39,8 @@ public class MobiledataTOservice extends SenderWapper{
 		return new Mobiledata(this.config);
 	}
 
-	public void TOservice (){
-		getSender().toService(requestData);
+	public String TOservice (){
+		return getSender().toService(requestData);
 	}
 	
 	

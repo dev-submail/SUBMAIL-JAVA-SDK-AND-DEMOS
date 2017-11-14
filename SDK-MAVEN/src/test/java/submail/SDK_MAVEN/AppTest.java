@@ -1,4 +1,4 @@
-package submail.sdk;
+package submail.SDK_MAVEN;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

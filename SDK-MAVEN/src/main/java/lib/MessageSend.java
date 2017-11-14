@@ -3,8 +3,6 @@ package lib;
 import java.io.File;
 
 import config.AppConfig;
-import config.MailConfig;
-import config.MessageConfig;
 import lib.base.ISender;
 import lib.base.SenderWapper;
 /**
@@ -39,8 +37,8 @@ public class MessageSend extends SenderWapper{
 		return new  Message(this.config);
 	}
 
-	public void send(){
-		getSender().send(requestData);
+	public String send(){
+		return getSender().send(requestData);
 	}
 	
 	
