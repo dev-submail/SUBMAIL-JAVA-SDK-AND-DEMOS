@@ -1,18 +1,24 @@
-package lib;
+package com.submail.lib;
 
 import java.io.File;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
-import config.AppConfig;
-import lib.base.ISender;
-import lib.base.SenderWapper;
+import org.apache.http.ParseException;
+
+import com.submail.config.AppConfig;
+import com.submail.lib.base.ISender;
+import com.submail.lib.base.SenderWapper;
+
 /**
- * mail/send 是 SUBMAIL 的邮件 API。 mail/send API 不仅提供强大的邮件发送功能, 
- * 并在 API 中集成了地址簿发送功能。你可以通过设定一些参数来确定 API 以哪种模式发送。 
+ * mail/send 是 SUBMAIL 的邮件 API。 mail/send API 不仅提供强大的邮件发送功能, 并在 API
+ * 中集成了地址簿发送功能。你可以通过设定一些参数来确定 API 以哪种模式发送。
+ * 
  * @author submail
  *
  */
-public class MAILSend extends SenderWapper{
-	
+public class MAILSend extends SenderWapper {
+
 	protected AppConfig config = null;
 	public static final String TO = "to";
 	public static final String ADDRESSBOOK = "addressbook";
@@ -28,13 +34,14 @@ public class MAILSend extends SenderWapper{
 	public static final String LINKS = "links";
 	public static final String ATTACHMENTS = "attachments";
 	public static final String HEADERS = "headers";
+	public static final String ASYN = "asynchronous";
 
 	public MAILSend(AppConfig config) {
-		
+
 		this.config = config;
-		
+
 	}
-	
+
 	public void addTo(String address, String name) {
 		requestData.addWithBracket(TO, name, address);
 	}
@@ -67,33 +74,37 @@ public class MAILSend extends SenderWapper{
 	public void setText(String text) {
 		requestData.put(TEXT, text);
 	}
-	
+
 	public void setHtml(String html) {
 		requestData.put(HTML, html);
 	}
-	
+
 	public void addVar(String key, String val) {
 		requestData.addWithJson(VARS, key, val);
 	}
-	
+
 	public void addLink(String key, String val) {
 		requestData.addWithJson(LINKS, key, val);
 	}
-	
-	public void addAttachment(String file){
+
+	public void addAttachment(String file) {
 		requestData.addWithIncrease(ATTACHMENTS, new File(file));
 	}
-	
+
 	public void addHeaders(String key, String val) {
 		requestData.addWithJson(HEADERS, key, val);
 	}
-	
+
+	public void setAsyn(String asyn) {
+		requestData.addWithComma(ASYN, asyn);
+	}
+
 	@Override
 	public ISender getSender() {
 		return new Mail(this.config);
 	}
 
-	public String send(){
+	public String send() throws ParseException, NoSuchAlgorithmException, IOException {
 		return getSender().send(requestData);
 	}
 }

@@ -1,12 +1,19 @@
-package lib;
+package com.submail.lib;
 
-import config.AppConfig;
-import lib.base.ISender;
-import lib.base.SenderWapper;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
+import org.apache.http.ParseException;
+
+import com.submail.config.AppConfig;
+import com.submail.lib.base.ISender;
+import com.submail.lib.base.SenderWapper;
+
 /**
- *mail/xsend 提供强大的邮件发送功能，区别于 mail/send API，mail/xsend 无需提交 html 源码或邮件文本内容，
- *甚至无需提交邮件标题或发件人，仅需提交你在 SUBMAIL MAIL 应用程序中创建的邮件项目的标记（ID），
- *并可以使用变量动态的控制每封邮件的内容。 了解如何使用文本变量和超链接变量。
+ * mail/xsend 提供强大的邮件发送功能，区别于 mail/send API，mail/xsend 无需提交 html 源码或邮件文本内容，
+ * 甚至无需提交邮件标题或发件人，仅需提交你在 SUBMAIL MAIL 应用程序中创建的邮件项目的标记（ID）， 并可以使用变量动态的控制每封邮件的内容。
+ * 了解如何使用文本变量和超链接变量。
+ * 
  * @author submail
  *
  */
@@ -28,6 +35,7 @@ public class MAILXSend extends SenderWapper {
 	public static final String VARS = "vars";
 	public static final String LINKS = "links";
 	public static final String HEADERS = "headers";
+	public static final String ASYN = "asynchronous";
 
 	public MAILXSend(AppConfig config) {
 		this.config = config;
@@ -69,20 +77,25 @@ public class MAILXSend extends SenderWapper {
 	public void addVar(String key, String val) {
 		requestData.addWithJson(VARS, key, val);
 	}
-	
+
 	public void addLink(String key, String val) {
 		requestData.addWithJson(LINKS, key, val);
 	}
-	
+
 	public void addHeaders(String key, String val) {
 		requestData.addWithJson(HEADERS, key, val);
 	}
+
+	public void setAsyn(String asyn) {
+		requestData.addWithComma(ASYN, asyn);
+	}
+
 	@Override
 	public ISender getSender() {
 		return new Mail(this.config);
 	}
 
-	public String xsend(){
+	public String xsend() throws ParseException, NoSuchAlgorithmException, IOException {
 		return getSender().xsend(requestData);
 	}
 }
