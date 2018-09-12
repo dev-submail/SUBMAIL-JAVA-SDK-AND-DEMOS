@@ -28,7 +28,7 @@ public class RequestEncoder {
 		}
 		try {
 			MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
-			messageDigest.update(str.getBytes());
+			messageDigest.update(str.getBytes("UTF-8"));
 			return getFormattedText(messageDigest.digest());
 		} catch (Exception e) {
 			throw new RuntimeException(e);
