@@ -5,14 +5,15 @@ import java.util.Properties;
 
 import config.AppConfig;
 import config.InternationalsmsConfig;
+import config.MMSConfig;
 import config.MailConfig;
 import config.MessageConfig;
-import config.MobiledataConfig;
 import config.VoiceConfig;
 
 /**
  * 这个类通过加载app_config.properties文件创建配置对象并获取值，包括创建
  * MailConfig，MessageConfig，VoiceConfig,InternationalsmsConfig,MobiledataConfig
+ * 
  * @see AppConfig
  * @see MailConfig
  * @see MessageConfig
@@ -27,12 +28,11 @@ public class ConfigLoader {
 	private static Properties pros = null;
 	/**
 	 * 加载文件时，类载入，静态块内部的操作将被运行一次
-	 * */
+	 */
 	static {
 		pros = new Properties();
 		try {
-			pros.load(ConfigLoader.class
-					.getResourceAsStream("/app_config.properties"));
+			pros.load(ConfigLoader.class.getResourceAsStream("/app_config.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -40,9 +40,9 @@ public class ConfigLoader {
 
 	/**
 	 * enum define two kinds of configuration.
-	 * */
+	 */
 	public static enum ConfigType {
-		Mail, Message,Voice,Internationalsms,Mobiledata
+		Mail, Message, Voice, Internationalsms, MMS
 	};
 
 	/**
@@ -53,7 +53,7 @@ public class ConfigLoader {
 	 * @return If the type is ConfigType#Mail,return the instance of
 	 *         {@link MailConfig}. And,if the type is ConfigType#Message,return
 	 *         the instance of {@link MessageConfig}.
-	 * */
+	 */
 	public static AppConfig load(ConfigType type) {
 		switch (type) {
 		case Mail:
@@ -64,8 +64,8 @@ public class ConfigLoader {
 			return createVoiceConfig();
 		case Internationalsms:
 			return createInternationalsmsConfig();
-		case Mobiledata:
-			return createMobiledataConfig();
+		case MMS:
+			return createMMSConfig();
 		default:
 			return null;
 		}
@@ -86,7 +86,7 @@ public class ConfigLoader {
 		config.setSignType(pros.getProperty(MessageConfig.APP_SIGNTYPE));
 		return config;
 	}
-	
+
 	private static AppConfig createVoiceConfig() {
 		AppConfig config = new VoiceConfig();
 		config.setAppId(pros.getProperty(VoiceConfig.APP_ID));
@@ -94,7 +94,7 @@ public class ConfigLoader {
 		config.setSignType(pros.getProperty(VoiceConfig.APP_SIGNTYPE));
 		return config;
 	}
-	
+
 	private static AppConfig createInternationalsmsConfig() {
 		AppConfig config = new InternationalsmsConfig();
 		config.setAppId(pros.getProperty(InternationalsmsConfig.APP_ID));
@@ -102,12 +102,12 @@ public class ConfigLoader {
 		config.setSignType(pros.getProperty(InternationalsmsConfig.APP_SIGNTYPE));
 		return config;
 	}
-	
-	private static AppConfig createMobiledataConfig() {
-		AppConfig config = new MobiledataConfig();
-		config.setAppId(pros.getProperty(MobiledataConfig.APP_ID));
-		config.setAppKey(pros.getProperty(MobiledataConfig.APP_KEY));
-		config.setSignType(pros.getProperty(MobiledataConfig.APP_SIGNTYPE));
+
+	private static AppConfig createMMSConfig() {
+		AppConfig config = new MMSConfig();
+		config.setAppId(pros.getProperty(MMSConfig.APP_ID));
+		config.setAppKey(pros.getProperty(MMSConfig.APP_KEY));
+		config.setSignType(pros.getProperty(MMSConfig.APP_SIGNTYPE));
 		return config;
 	}
 
