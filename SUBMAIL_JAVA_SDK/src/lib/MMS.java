@@ -14,6 +14,7 @@ import lib.base.Sender;
 public class MMS extends Sender {
 	private static final String API_XSEND = "http://api.submail.cn/mms/xsend.json";
 	private static final String API_MULTIXSEND = "http://api.submail.cn/mms/multixsend.json";
+	private static final String API_TEMPLATE = "http://api.mysubmail.com/mms/template.json";
 
 	public MMS(AppConfig config) {
 		this.config = config;
@@ -31,6 +32,30 @@ public class MMS extends Sender {
 	@Override
 	public String multixsend(Map<String, Object> data) {
 		return request(API_MULTIXSEND, data);
+	}
+
+	@Override
+	public String get(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		return getMethodRequest(API_TEMPLATE, data);
+	}
+
+	@Override
+	public String post(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		return request(API_TEMPLATE, data);
+	}
+
+	@Override
+	public String put(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		return putMethodRequest(API_TEMPLATE, data);
+	}
+
+	@Override
+	public String delete(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		return deleteMethodRequest(API_TEMPLATE, data);
 	}
 
 }
