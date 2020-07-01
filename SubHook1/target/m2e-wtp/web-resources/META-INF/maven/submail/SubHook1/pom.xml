@@ -16,7 +16,7 @@
 		<mybatis.version>3.2.8</mybatis.version>
 		<mybatis.spring.version>1.2.2</mybatis.spring.version>
 		<mybatis.paginator.version>1.2.15</mybatis.paginator.version>
-		<mysql.version>5.1.32</mysql.version>
+		<mysql.version>8.0.16</mysql.version>
 		<bonecp-spring.version>0.8.0.RELEASE</bonecp-spring.version>
 		<druid.version>1.0.9</druid.version>
 
